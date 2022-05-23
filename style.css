@@ -10,7 +10,7 @@ body {
 }
 
 /* Full-width input fields */
-input[type=text], input[type=email], input[type=tel], input[type=password] {
+input[type=text], input[type=email], input[type=number], input[type=password] {
   width: 80%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -55,11 +55,13 @@ button:hover {
   opacity: 0.8;
 }
 
-#image{
-  visibility: hidden;
-  width: auto;
-}
 
+#image{
+  display: none;
+}
+img{
+  width: 100%;
+}
 .container {
     padding: 16px;
     background-color:#f1f1f1;

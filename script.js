@@ -1,5 +1,7 @@
 //const formReg = document.getElementById("formReg")
-
+const id = document.getElementById("id")
+const form=document.getElementById("form")
+const login=document.getElementById("login")
 //login and registration button
 const mainPageH1 = document.getElementById("mainPageH1")
 const btnLog = document.getElementById("login"); //login button
@@ -53,6 +55,7 @@ const phoneError = document.getElementById("phoneError")
 
 //password
 const psw = document.getElementById("psw");
+
 const submitRegistration = document.getElementById('submitRegistration'); //button to registrate user
 
 
@@ -138,12 +141,20 @@ password.addEventListener("keyup", (e) => {
 
 })
 
+form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+    id.style.display = "none"
+    login.style.display="none"
+    image.style.display = "block"
+})
+
 function buttonToLoginUsers(event) {
-    console.log("image.style", image.style);
-    image.style.visibility = event
-    mainPageH1.style.display = "none"
-    btnLog.style.display = "none"
-    btnReg.style.display = "none"
+    
+    // console.log("image.style", image.style);
+    // image.style.visibility = event
+    // mainPageH1.style.display = "none"
+    // btnLog.style.display = "none"
+    // btnReg.style.display = "none"
     // if(uNameInputValue && passInputValue){
     //     image.style.visibility=event
     //     mainPageH1.style.display="none"
@@ -272,39 +283,23 @@ lastName.addEventListener("keyup", (e) => {
 
 //email validation
 email.addEventListener("keyup", (e) => {
-   
+
     let regEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     let emailReg = email.value;
 
     function checkEmail(emailOfUserInReg) {
-        if (regEmail.test(emailReg)) {
-            if (emailOfUserInReg) {
+        if (emailOfUserInReg && regEmail.test(emailReg)) {
 
-                iEmailErrorReg.style.display = "none"
-                emailError.innerHTML = ""
-                iEmailOkReg.style.display = 'block'
-                email.style.borderColor = "green"
+            iEmailErrorReg.style.display = "none"
+            emailError.innerHTML = ""
+            iEmailOkReg.style.display = 'block'
+            email.style.borderColor = "green"
 
-            } else if (emailOfUserInReg === "") {
-                iEmailOkReg.style.display = 'none'
-                email.style.borderColor = "red"
-                iEmailErrorReg.style.display = "block"
-                emailError.innerHTML = "please enter your email"
-            }
-            // else if (emailOfUserInReg.length < 3) {
-            //     iEmailOkReg.style.display = 'none'
-            //     iEmailErrorReg.style.display = "block"
-            //     emailError.innerHTML = "surname must be min 3 simbol"
-            // } else if (emailOfUserInReg.length > 10) {
-            //     iEmailOkReg.style.display = 'none'
-            //     iEmailErrorReg.style.display = "block"
-            //     emailError.innerHTML = "surname must be max 15 simbol"
-            // }
-            // else {
-            //     iEmailOkReg.style.display = 'none'
-            //     iEmailErrorReg.style.display = "block"
-            //     emailError.innerHTML = "please enter correct email"
-            // }
+        } else if (emailOfUserInReg === "") {
+            iEmailOkReg.style.display = 'none'
+            email.style.borderColor = "red"
+            iEmailErrorReg.style.display = "block"
+            emailError.innerHTML = "please enter your email"
         } else {
             iEmailOkReg.style.display = 'none'
             email.style.borderColor = "red"
@@ -334,12 +329,13 @@ phone.addEventListener("keyup", (e) => {
     iPhoneErrorReg
     phoneError
 
+    // let regPhone = "^[+][3][7][4][-\\s/0-9]{8,16}$|[0][-\\s\\./0-9]{8,12}$";
     let regPhone = /^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/g;
     let phoneReg = lastName.value;
 
     function checkPhone(phoneOfUserInReg) {
         if (regPhone.test(phoneReg)) {
-            if (phoneOfUserInReg && phoneOfUserInReg.length >= 3 && phoneOfUserInReg.length <= 15) {
+            if (phoneOfUserInReg && phoneOfUserInReg.length >= 12 && phoneOfUserInReg.length <= 18) {
 
                 iPhoneErrorReg.style.display = "none"
                 phoneError.innerHTML = ""
@@ -350,28 +346,28 @@ phone.addEventListener("keyup", (e) => {
                 iPhoneOkReg.style.display = 'none'
                 phone.style.borderColor = "red"
                 iPhoneErrorReg.style.display = "block"
-                phoneError.innerHTML = "please enter your surname"
-            } else if (phoneOfUserInReg.length < 3) {
+                phoneError.innerHTML = "please enter your phone"
+            } else if (phoneOfUserInReg.length < 12) {
                 iPhoneOkReg.style.display = 'none'
                 phone.style.borderColor = "red"
                 iPhoneErrorReg.style.display = "block"
-                phoneError.innerHTML = "surname must be min 3 simbol"
-            } else if (phoneOfUserInReg.length > 10) {
+                phoneError.innerHTML = "phone must be min 12 simbol"
+            } else if (phoneOfUserInReg.length > 18) {
                 iPhoneOkReg.style.display = 'none'
                 phone.style.borderColor = "red"
                 iPhoneErrorReg.style.display = "block"
-                phoneError.innerHTML = "surname must be max 15 simbol"
+                phoneError.innerHTML = "phone must be max 18 simbol"
             } else {
                 iPhoneOkReg.style.display = 'none'
                 phone.style.borderColor = "red"
                 iPhoneErrorReg.style.display = "block"
-                phoneError.innerHTML = "please enter correct surname"
+                phoneError.innerHTML = "please enter correct phone"
             }
         } else {
             iPhoneOkReg.style.display = 'none'
             phone.style.borderColor = "red"
             iPhoneErrorReg.style.display = "block"
-            phoneError.innerHTML = "please enter english words"
+            phoneError.innerHTML = "please enter number"
             setTimeout(() => {
                 phoneError.innerHTML = ""
                 //iLastNameErrorReg.style.display = "none"
@@ -387,6 +383,16 @@ phone.addEventListener("keyup", (e) => {
     }, 100)
 
 })
+
+// const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+// const regex = /[A-Z]/g;
+// const found = paragraph.match(regex);
+
+// console.log(found);
+
+
+
+
 
 
 

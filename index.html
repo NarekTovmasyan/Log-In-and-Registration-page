@@ -12,17 +12,18 @@
 
 <body>
 
+<div id="id">
     <h1 id="mainPageH1">Login page</h1>
     <button id="btnLog" onclick="loginButton('block')">Login</button>
     <button id="btnReg" onclick="registrationButton('block')">Registration</button>
-
+</div>
     <!-- <div class="result"><img src="./image/false.png" alt=""></div> -->
-    <div  class="result"><img id="image" src="./image/ok.png" alt=""></div>
+    <div id="image" class="result"><img src="./image/ok.png" alt=""></div>
 
 
     <div id="login" class="modal">
 
-        <form class="modal-content animate" action="" method="get">
+        <form class="modal-content animate" id="form">
             <!-- <div class="imgcontainer"> -->
                 <!-- <span onclick="document.getElementById('login').style.display='none'" class="close"
                 title="Close Modal">&times;</span> -->
@@ -31,19 +32,19 @@
 
             <div class="container">
                 <h1 class="containerName">Login</h1>
-                <label for="uname"><b>Username</b></label>
+                <label for="uname"><b>Username</b></label><br>
                 <input id="uname" type="text" placeholder="Enter Username" name="uname" required>
                 <i id="iNameOklog" class="fas fa-check-circle"></i>
                 <i id="iNameErrorlog" class="fas fa-exclamation-circle"></i>
                 <div id="userNameError"></div>
 
-                <label for="psw"><b>Password</b></label>
+                <label for="psw"><b>Password</b></label><br>
                 <input id="password" type="password" placeholder="Enter Password" name="psw" required>
                 <i id="iPswOklog" class="fas fa-check-circle"></i>
                 <i id="iPswErrorlog" class="fas fa-exclamation-circle"></i>
                 <div id="logPassError"></div>
 
-                <button id="buttonToLoginUsers" onclick="buttonToLoginUsers('visible')" >Login</button>
+                <button id="buttonToLoginUsers" type="submit">Login</button>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
@@ -86,7 +87,7 @@
                 <div class="error" id="emailError"></div>
 
                 <label for="phone"><b>Phone</b></label><br>
-                <input id="phone" type="tel" pattern="+[0-9]{3} [1-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" placeholder="+374 94 27 67 00" name="phone" required>
+                <input id="phone" type="number" pattern="+[0-9]{3} [1-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" placeholder="+374 94 27 67 00" name="phone" required>
                 <i id="iPhoneOkReg"    class="fas fa-check-circle"></i>
                 <i id="iPhoneErrorReg" class="fas fa-exclamation-circle"></i>
                 <div class="error" id="phoneError"></div>
