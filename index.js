@@ -5,7 +5,8 @@ const path = require("path");
 const extType = {
     ".html": "text/html",
     ".css": "text/css",
-    ".js": "text/javascript"
+    ".js": "text/javascript",
+    ".png":"image/png"
 }
 console.log("hiiii");
 
