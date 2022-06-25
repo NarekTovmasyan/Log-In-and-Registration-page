@@ -1,56 +1,20 @@
-const fs = require("fs");
-const http = require("http");
-const path = require("path");
+import express from 'express';
+import mongoose from 'mongoose';
+import {contactsRouter} from './src/routers/contacts-router.js';
 
-const extType = {
-    ".html": "text/html",
-    ".css": "text/css",
-    ".js": "text/javascript",
-    ".png":"image/png"
-}
-console.log("hiiii");
+const app = express();
+const port = 5000;
+const json = express.json();
+app.use(json);
 
-function filePathFunc(req, res, next) {
-    let url = req.url;
-    if (url === "/") {
-        url = "/index.html";
-    }
-    const filePath = path.resolve("public" + url)
-    fs.promises.access(filePath)
-        .then(() => {
-            const ext = path.extname(filePath);
-            res.writeHead(200, {
-                'Content-type': extType[ext]
-            });
-            fs.createReadStream(filePath).pipe(res)
-        })
-        .catch(() => {
-            next();
-        })
-}
+(async () => {
+    await mongoose.connect('mongodb://localhost:27017/login-and-registration');
+})();
 
-const server = http.createServer((req, res) => {
-    filePathFunc(req, res, () => {
-        if (req.url === "/hello") {
-            res.writeHead(200, {
-                'Content-type': 'text/plain'
-            });
-            res.end('barev dzez Narek!!!!')
-        } else if (req.url === "/bye") {
-            res.writeHead(200, {
-                "Content-Type": "application/json"
-            });
-            res.end(JSON.stringify({
-                name: "Narek"
-            }))
-        } else {
-            res.writeHead(404, {
-                "Content-type": "text/plain"
-            });
-            res.end("Not found");
-        }
-    })
+const frontFiles=express.static("./public/frontend");
+app.use(frontFiles);
 
-})
+app.listen(port, () => console.log(`server listen ${port} port`));
 
-server.listen(5000)
+app.use(contactsRouter);
+
